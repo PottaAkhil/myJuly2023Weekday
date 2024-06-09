@@ -1,24 +1,30 @@
 name: CI/CD workflow for Maven Build and Sonar Code scan
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+
     - name: Set up JDK 11
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'adopt'
         java-version: '11'
+
     - name: Build with Maven
       run: mvn install -f MyWebApp/pom.xml
+
     - name: Official SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v2.1.0      
+      uses: SonarSource/sonarqube-scan-action@v2.1.0
       with:
         projectBaseDir: .
         args: >
@@ -27,5 +33,3 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      # Check the Quality Gate status.
-
