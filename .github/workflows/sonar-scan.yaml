@@ -17,8 +17,8 @@ jobs:
         java-version: '11'
     - name: Build with Maven
       run: mvn install -f MyWebApp/pom.xml
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
+    - name: Official SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@v2.1.0      
       with:
         projectBaseDir: .
         args: >
@@ -29,7 +29,3 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       # Check the Quality Gate status.
 
-      
-    - name: SonarQube Quality Gate check
-      id: sonarqube-quality-gate-check
-      uses: sonarsource/sonarqube-quality-gate-action@master
