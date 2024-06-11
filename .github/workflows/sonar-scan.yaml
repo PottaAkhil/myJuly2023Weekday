@@ -31,5 +31,5 @@ jobs:
           -Dsonar.organization=my-org
           -Dsonar.projectKey=github_actions
       env:
-        SONAR_TOKEN: sqp_fedc10e5c21db49ba6017376e3aaad11e5cf1f2f
+        SONAR_TOKEN: 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
         SONAR_HOST_URL: http://3.110.222.70:9000
